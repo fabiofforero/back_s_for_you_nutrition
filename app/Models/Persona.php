@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model
 {
-    protected $table = 'persona'; // Nombre de la tabla
-    protected $primaryKey = 'Id'; // Clave primaria
-    public $timestamps = false; // Desactivar timestamps si no los estás usando
+    protected $table = 'persona'; // Nombre de la tabla en la base de datos
+    protected $primaryKey = 'Id'; // Llave primaria
+    public $timestamps = false; // Si no usas created_at y updated_at
 
     protected $fillable = [
         'Documento',
@@ -17,5 +17,6 @@ class Persona extends Model
         'Telefono',
         'Email',
         'Direccion',
+        'Id_ciudad'
     ];
 }

@@ -23,9 +23,11 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -94,7 +96,8 @@ $app->configure('app');
  $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
- $app->register(Laravel\Tinker\TinkerServiceProvider::class);
+ 
+$app->register(Laravel\Tinker\TinkerServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -105,6 +108,8 @@ $app->configure('app');
 | can respond to, as well as the controllers that may handle them.
 |
 */
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',

@@ -12,6 +12,18 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+$router->get('/clientes', 'ClienteController@index');
+$router->get('/clientes/{id}', 'ClienteController@show');
+$router->post('/clientes', 'ClienteController@store');
+$router->put('/clientes/{id}', 'ClienteController@update');
+$router->delete('/clientes/{id}', 'ClienteController@destroy');
+
+$router->get('/personas', 'PersonaController@index');
+$router->post('/personas', 'PersonaController@store');
+$router->get('/personas/{id}', 'PersonaController@show');
+$router->put('/personas/{id}', 'PersonaController@update');
+$router->delete('/personas/{id}', 'PersonaController@destroy');
+
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
