@@ -120,6 +120,12 @@ $router->post('/notificaciones', 'NotificacionController@store');
 $router->put('/notificaciones/{id}', 'NotificacionController@update');
 $router->delete('/notificaciones/{id}', 'NotificacionController@destroy');
 
+$router->get('/ingredientesAdicionales', 'IngredienteAdicionalController@index');
+$router->get('/ingredientesAdicionales/{id}', 'IngredienteAdicionalController@show');
+$router->post('/ingredientesAdicionales', 'IngredienteAdicionalController@store');
+$router->put('/ingredientesAdicionales/{id}', 'IngredienteAdicionalController@update');
+$router->delete('/ingredientesAdicionales/{id}', 'IngredienteAdicionalController@destroy');
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
