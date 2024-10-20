@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2024 a las 17:42:01
+-- Tiempo de generación: 21-10-2024 a las 00:21:55
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -32,8 +32,15 @@ CREATE TABLE `cantidad ingrediente` (
   `Id_ingrediente` int(4) NOT NULL,
   `Id_producto` int(4) NOT NULL,
   `Cantidad_usar` double NOT NULL,
-  `Unidad_de_medida` int(5) NOT NULL
+  `Unidad_de_medida` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cantidad ingrediente`
+--
+
+INSERT INTO `cantidad ingrediente` (`Id`, `Id_ingrediente`, `Id_producto`, `Cantidad_usar`, `Unidad_de_medida`) VALUES
+(1, 1, 1, 234, 'mil');
 
 -- --------------------------------------------------------
 
@@ -46,6 +53,14 @@ CREATE TABLE `ciudad` (
   `Nombre` varchar(50) NOT NULL,
   `Id_departamento` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ciudad`
+--
+
+INSERT INTO `ciudad` (`ID`, `Nombre`, `Id_departamento`) VALUES
+(1, 'Tunja', 1),
+(2, 'Duitama', 1);
 
 -- --------------------------------------------------------
 
@@ -61,6 +76,14 @@ CREATE TABLE `cliente` (
   `Descuento_inicial` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`Id`, `Id_persona`, `Id_tipo_compra`, `Puntos_fidelizacion`, `Descuento_inicial`) VALUES
+(1, 3, 1, 2, 0),
+(2, 4, 2, 5, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +94,14 @@ CREATE TABLE `departamento` (
   `Nombre` varchar(50) NOT NULL,
   `ID` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `departamento`
+--
+
+INSERT INTO `departamento` (`Nombre`, `ID`) VALUES
+('Boyacá', 1),
+('Cundinamarca', 2);
 
 -- --------------------------------------------------------
 
@@ -88,6 +119,13 @@ CREATE TABLE `factura` (
   `Subtotal` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`Id`, `Id_pedido`, `Fecha_factura`, `Id_producto`, `Cantidad`, `valor_unitario`, `Subtotal`) VALUES
+(1, 1, '2024-10-20', 1, 10, 12000, 120000);
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +139,13 @@ CREATE TABLE `gestor_pedidos` (
   `Salario` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `gestor_pedidos`
+--
+
+INSERT INTO `gestor_pedidos` (`Id`, `Id_persona`, `Fecha_contratacion`, `Salario`) VALUES
+(3, 5, '2023-10-14', 2500);
+
 -- --------------------------------------------------------
 
 --
@@ -112,8 +157,15 @@ CREATE TABLE `ingrediente` (
   `Nombre` varchar(40) NOT NULL,
   `Cantidad` int(6) NOT NULL,
   `Fecha_llegada` date NOT NULL,
-  `Feca_vencimiento` date NOT NULL
+  `Fecha_vencimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ingrediente`
+--
+
+INSERT INTO `ingrediente` (`Id`, `Nombre`, `Cantidad`, `Fecha_llegada`, `Fecha_vencimiento`) VALUES
+(1, 'azucar', 12, '2024-10-20', '2024-10-30');
 
 -- --------------------------------------------------------
 
@@ -130,6 +182,13 @@ CREATE TABLE `ingrediente_adicional` (
   `Id_ingrediente` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `ingrediente_adicional`
+--
+
+INSERT INTO `ingrediente_adicional` (`Id`, `Nombre`, `Precio`, `Cantidad`, `Unidad_medida`, `Id_ingrediente`) VALUES
+(1, 'leche', 2000, 1000, 1000, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +201,13 @@ CREATE TABLE `inventario` (
   `Id_ingrediente` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`Id`, `Fecha_ingreso`, `Id_ingrediente`) VALUES
+(1, '2024-10-20', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -153,6 +219,13 @@ CREATE TABLE `menu` (
   `Id_seccion_menu` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `menu`
+--
+
+INSERT INTO `menu` (`Id`, `Id_seccion_menu`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -163,6 +236,14 @@ CREATE TABLE `metodo_pago` (
   `Id` int(4) NOT NULL,
   `Descripcion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `metodo_pago`
+--
+
+INSERT INTO `metodo_pago` (`Id`, `Descripcion`) VALUES
+(1, 'nequi'),
+(2, 'daviplata');
 
 -- --------------------------------------------------------
 
@@ -178,6 +259,13 @@ CREATE TABLE `notificacion` (
   `Fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `notificacion`
+--
+
+INSERT INTO `notificacion` (`Id`, `Id_persona`, `Id_pedido`, `Mensaje`, `Fecha`) VALUES
+(1, 5, 1, 'su pedido este en preparación ', '2024-10-20');
+
 -- --------------------------------------------------------
 
 --
@@ -187,7 +275,6 @@ CREATE TABLE `notificacion` (
 CREATE TABLE `pedido` (
   `Id` int(4) NOT NULL,
   `Id_cliente` int(4) NOT NULL,
-  `Id_factura` int(4) NOT NULL,
   `Fecha` date NOT NULL,
   `Estado` varchar(40) NOT NULL,
   `Id_ingrediente` int(4) NOT NULL,
@@ -196,6 +283,13 @@ CREATE TABLE `pedido` (
   `Total` double NOT NULL,
   `Id_Metodo_pago` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`Id`, `Id_cliente`, `Fecha`, `Estado`, `Id_ingrediente`, `Id_tipo_compra`, `Ubicacion_entrega`, `Total`, `Id_Metodo_pago`) VALUES
+(1, 1, '2024-10-20', 'en preparacion', 1, 2, 'en la mesa', 100000, 1);
 
 -- --------------------------------------------------------
 
@@ -213,6 +307,16 @@ CREATE TABLE `persona` (
   `Direccion` varchar(150) NOT NULL,
   `Id_ciudad` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`Id`, `Documento`, `Nombres`, `Apellidos`, `Telefono`, `Email`, `Direccion`, `Id_ciudad`) VALUES
+(3, 123456789, 'Juan', 'Pérez', 3216549870, 'juan.perez@example.com', 'Calle 123, Bogotá', 1),
+(4, 1234, 'lucia', 'chavez', 3001234567, 'lucia.chavez@example.com', 'Calle 1 No 2-3, Tunja', 1),
+(5, 123456, 'Fabio', 'Perez', 3216549870, 'fabio.perez@example.com', 'Calle 123, Tunja, Boyacá', 1),
+(6, 12345434, 'brayan', 'buitrago', 12321234, 'brayan26gmail.com', 'calle 122 a 12 31', 1);
 
 -- --------------------------------------------------------
 
@@ -232,6 +336,13 @@ CREATE TABLE `producto` (
   `Calorias` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`Id`, `Nombre`, `Precio`, `Disponibilidad`, `Id_ingrediente`, `Id_cantidad_ingrediente`, `Descripcion`, `Tamaño`, `Calorias`) VALUES
+(1, 'jugo de frutos rojos', 20000, 10, 1, 1, 'jugo preparado con pulpa de fruta ', 1000, 100);
+
 -- --------------------------------------------------------
 
 --
@@ -244,6 +355,13 @@ CREATE TABLE `programa_fidelizacion` (
   `Puntos_acumulados` int(2) NOT NULL,
   `Estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `programa_fidelizacion`
+--
+
+INSERT INTO `programa_fidelizacion` (`Id`, `Id_cliente`, `Puntos_acumulados`, `Estado`) VALUES
+(1, 1, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -258,6 +376,13 @@ CREATE TABLE `repartidor` (
   `Salario` double NOT NULL,
   `Direccion` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `repartidor`
+--
+
+INSERT INTO `repartidor` (`Id`, `Id_persona`, `Fecha_contratacion`, `Salario`, `Direccion`) VALUES
+(1, 6, '2024-10-20', 2500000, 'calle 2323 72');
 
 -- --------------------------------------------------------
 
@@ -274,6 +399,13 @@ CREATE TABLE `seccion_menu` (
   `Id_ingrediente_adicional` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `seccion_menu`
+--
+
+INSERT INTO `seccion_menu` (`Id`, `Nombre`, `Descripcion`, `Calorias`, `Id_producto`, `Id_ingrediente_adicional`) VALUES
+(1, 'jugos', 'jugos sin grasas', 1000, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -284,6 +416,14 @@ CREATE TABLE `tipo_compra` (
   `Id` int(4) NOT NULL,
   `Descripcion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_compra`
+--
+
+INSERT INTO `tipo_compra` (`Id`, `Descripcion`) VALUES
+(1, 'virtual'),
+(2, 'presencial');
 
 --
 -- Índices para tablas volcadas
@@ -394,7 +534,6 @@ ALTER TABLE `pedido`
   ADD KEY `Id_cliente` (`Id_cliente`),
   ADD KEY `Id_tipo_compra` (`Id_tipo_compra`),
   ADD KEY `Id_ingrediente` (`Id_ingrediente`),
-  ADD KEY `Id_factura` (`Id_factura`),
   ADD KEY `Id_Metodo_pago` (`Id_Metodo_pago`);
 
 --
@@ -454,115 +593,115 @@ ALTER TABLE `tipo_compra`
 -- AUTO_INCREMENT de la tabla `cantidad ingrediente`
 --
 ALTER TABLE `cantidad ingrediente`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  MODIFY `ID` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `ID` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `gestor_pedidos`
 --
 ALTER TABLE `gestor_pedidos`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ingrediente`
 --
 ALTER TABLE `ingrediente`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ingrediente_adicional`
 --
 ALTER TABLE `ingrediente_adicional`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
 --
 ALTER TABLE `metodo_pago`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `programa_fidelizacion`
 --
 ALTER TABLE `programa_fidelizacion`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `repartidor`
 --
 ALTER TABLE `repartidor`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `seccion_menu`
 --
 ALTER TABLE `seccion_menu`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_compra`
 --
 ALTER TABLE `tipo_compra`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -633,7 +772,6 @@ ALTER TABLE `pedido`
   ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`Id_cliente`) REFERENCES `cliente` (`Id`),
   ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`Id_ingrediente`) REFERENCES `ingrediente` (`Id`),
   ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`Id_tipo_compra`) REFERENCES `tipo_compra` (`Id`),
-  ADD CONSTRAINT `pedido_ibfk_4` FOREIGN KEY (`Id_factura`) REFERENCES `factura` (`Id`),
   ADD CONSTRAINT `pedido_ibfk_5` FOREIGN KEY (`Id_Metodo_pago`) REFERENCES `metodo_pago` (`Id`);
 
 --
@@ -646,7 +784,6 @@ ALTER TABLE `persona`
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`Id_cantidad_ingrediente`) REFERENCES `cantidad ingrediente` (`Id`),
   ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`Id_ingrediente`) REFERENCES `ingrediente` (`Id`);
 
 --
