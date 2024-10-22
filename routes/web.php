@@ -24,11 +24,11 @@ $router->get('/personas/{id}', 'PersonaController@show');
 $router->put('/personas/{id}', 'PersonaController@update');
 $router->delete('/personas/{id}', 'PersonaController@destroy');
 
-$router->get('/gestor-pedidos', 'GestorPedidoController@index');
-$router->get('/gestor-pedidos/{id}', 'GestorPedidoController@show');
-$router->post('/gestor-pedidos', 'GestorPedidoController@store');
-$router->put('/gestor-pedidos/{id}', 'GestorPedidoController@update');
-$router->delete('/gestor-pedidos/{id}', 'GestorPedidoController@destroy');
+$router->get('/gestorPedidos', 'GestorPedidoController@index');
+$router->get('/gestorPedidos/{id}', 'GestorPedidoController@show');
+$router->post('/gestorPedidos', 'GestorPedidoController@store');
+$router->put('/gestorPedidos/{id}', 'GestorPedidoController@update');
+$router->delete('/gestorPedidos/{id}', 'GestorPedidoController@destroy');
 
 $router->get('/cantidadIngredientes', 'CantidadIngredienteController@index');
 $router->get('/cantidadIngredientes/{id}', 'CantidadIngredienteController@show');
