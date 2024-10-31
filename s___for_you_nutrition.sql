@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-10-2024 a las 00:21:55
+-- Tiempo de generación: 31-10-2024 a las 04:02:10
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -593,7 +593,7 @@ ALTER TABLE `tipo_compra`
 -- AUTO_INCREMENT de la tabla `cantidad ingrediente`
 --
 ALTER TABLE `cantidad ingrediente`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudad`

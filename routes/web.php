@@ -12,6 +12,10 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+
+$router->get('/', function () use ($router) {
+    return $router->app->version();
+});
 $router->get('/clientes', 'ClienteController@index');
 $router->get('/clientes/{id}', 'ClienteController@show');
 $router->post('/clientes', 'ClienteController@store');
@@ -125,7 +129,3 @@ $router->get('/ingredientesAdicionales/{id}', 'IngredienteAdicionalController@sh
 $router->post('/ingredientesAdicionales', 'IngredienteAdicionalController@store');
 $router->put('/ingredientesAdicionales/{id}', 'IngredienteAdicionalController@update');
 $router->delete('/ingredientesAdicionales/{id}', 'IngredienteAdicionalController@destroy');
-
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});

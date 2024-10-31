@@ -23,11 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-$app->withFacades();
+// $app->withFacades();
 
 $app->withEloquent();
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -74,9 +72,11 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
+$app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+    App\Http\Middleware\CorsMiddleware::class
+
+]);
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
@@ -92,12 +92,13 @@ $app->configure('app');
 | totally optional, so you are not required to uncomment this line.
 |
 */
-
- $app->register(App\Providers\AppServiceProvider::class);
- $app->register(App\Providers\AuthServiceProvider::class);
+if ($app->runningInConsole()) {
+    $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+}
+// $app->register(App\Providers\AppServiceProvider::class);
+// $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
- 
-$app->register(Laravel\Tinker\TinkerServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -108,8 +109,6 @@ $app->register(Laravel\Tinker\TinkerServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
-
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
