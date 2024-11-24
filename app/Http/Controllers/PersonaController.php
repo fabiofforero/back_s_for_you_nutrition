@@ -21,7 +21,11 @@ class PersonaController extends Controller
 
     public function show($id)
     {
-        return Persona::findOrFail($id); // Obtener una persona por ID
+    $persona = Persona::find($id);
+    if (!$persona) {
+        return response()->json(['error' => 'Persona no encontrada'], 404);
+    }
+    return response()->json($persona);
     }
 
     public function update(Request $request, $id)
