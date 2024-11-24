@@ -14,16 +14,7 @@ class PersonaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'Documento' => 'required|integer',
-            'Nombres' => 'required|string|max:50',
-            'Apellidos' => 'required|string|max:50',
-            'Telefono' => 'required|integer',
-            'Email' => 'required|email|max:150',
-            'Direccion' => 'required|string|max:150',
-            'Id_ciudad' => 'required|integer',
-        ]);
-
+        
         $persona = Persona::create($request->all());
         return response()->json($persona, 201); // Retornar la nueva persona creada
     }
