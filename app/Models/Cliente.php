@@ -15,10 +15,5 @@ class Cliente extends Model
         'Descuento_inicial',
     ];
 
-    // Si hay una relación con el modelo Persona
-    public function persona()
-    {
-        return $this->belongsTo(Persona::class, 'Id_persona');
-    }
 }
 
